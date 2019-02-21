@@ -1,0 +1,59 @@
+{
+    "name": "zero",
+    "version": "0.0.1",
+    "author": {
+        "name": "zero",
+        "email": "1418275840@qq.com"
+    },
+    "description": "no description",
+    "license": "MIT",
+    "main": "./build/main.js",
+    "scripts": {
+        "build:win32": "node .zero/build.js && electron-builder --win --ia32",
+        "build:win64": "node .zero/build.js && electron-builder --win --x64",
+        "dev": "node .zero/dev-runner.js"
+    },
+    "build": {
+        "appId": "dev.zero",
+        "productName": "zero",
+        "directories": {
+            "buildResources": "build",
+            "output": "dist"
+        },
+        "files": [
+            "build/**/*"
+        ],
+        "win": {
+            "icon": "build/icons/logo.ico"
+        }
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "@babel/core": "^7.3.3",
+        "@babel/preset-env": "^7.3.1",
+        "babel-loader": "^8.0.5",
+        "babel-minify-webpack-plugin": "^0.3.1",
+        "cfonts": "^2.4.2",
+        "chromedriver": "^2.46.0",
+        "copy-webpack-plugin": "^4.6.0",
+        "del": "^3.0.0",
+        "devtron": "^1.4.0",
+        "electron": "^4.0.5",
+        "electron-builder": "^20.38.5",
+        "electron-debug": "^2.1.0",
+        "electron-devtools-installer": "^2.2.4",
+        "glob": "^7.1.3",
+        "html-webpack-plugin": "^3.2.0",
+        "mini-css-extract-plugin": "^0.5.0",
+        "multispinner": "^0.2.1",
+        "vue": "^2.6.6",
+        "vue-devtools": "^5.0.0-beta.1",
+        "vue-loader": "^15.6.4",
+        "vue-router": "^3.0.2",
+        "vue-template-compiler": "^2.6.6",
+        "vuex": "^3.1.0",
+        "webpack": "^4.29.5",
+        "webpack-dev-server": "^3.1.14",
+        "webpack-hot-middleware": "^2.24.3"
+    }
+}
