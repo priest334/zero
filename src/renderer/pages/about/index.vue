@@ -1,8 +1,7 @@
 <template>
-  <div id="app">
+  <div>
     <input type="button" @click="setValue" value="setValue" />
     <input type="button" @click="toIndex" :value="name" />
-    <router-view></router-view>
   </div>
 </template>
 <script>
@@ -15,11 +14,9 @@
     },
     methods: {
       setValue: function() {
-        console.log(this.$store);
-        this.$store.commit('uin', 456);
       },
       toIndex: function() {
-        this.$router.push({name: 'index'});
+        //this.$router.push({name: 'index'});
         //window.location.href = 'index.html';
       }
     },

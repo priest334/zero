@@ -2,7 +2,8 @@
  * index.js
  */
 
-import { router, store } from '../../init-vue';
+import { store } from '../../utils/init';
+import { router } from './router';
 import index from './index.vue';
 
 let vm = new Vue({

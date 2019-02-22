@@ -14,7 +14,7 @@ const DEFINED_WINDOWS = {
         name: 'about',
         url: isDev
         ? 'http://localhost:9080/about.html'
-        : `file://${__dirname}/pages/index.html`
+        : `file://${__dirname}/pages/about.html`
     }
 };
 
