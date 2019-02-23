@@ -5,14 +5,14 @@
 </template>
 <script>
   export default {
-    name: 'second',
     data: () => {
         return {
+          name: 'second'
         };
     },
     methods: {
       first: function() {
-        console.log(this);
+        this.$router.push({name: 'first'})
       }
     },
     mounted: function() {
