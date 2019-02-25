@@ -80,7 +80,6 @@ const rendererConfig = {
         extensions: ['.js', '.vue', '.json', '.css', '.sass', '.scss', '.less'],
         alias: {
             '@': path.join(__dirname, '../src/renderer'),
-            'pages': path.join(__dirname, '../src/renderer/pages'),
             'vue$': 'vue/dist/vue.esm.js'
         }
     },

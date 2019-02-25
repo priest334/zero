@@ -2,34 +2,48 @@
  * account.js
  */
 
- import { mapMutations } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
+
+const Name = 'account';
 
 const store = {
     state: {
-        account: {}
+        uin: 0,
+        token: ''
     },
     mutations: {
-        account: (state, options = {}) => {
-            state.account = Object.assign(state.account, options);
+        setUin: (state, value) => {
+            state.uin = value;
+        },
+        setToken: (state, value) => {
+            state.token = value;
         }
     }
 };
 
 const mixin = {
     computed: {
-        account: {
-            get: function() {
-                return this.$store.state.account;
-            },
-            set: function(options) {
-                this.$store.commit('account', options);
-            }
-        }
+        ...mapState({
+            uin: state => state[Name].uin,
+            token: state => state[Name].token
+        })
+    },
+    methods: {
+        ...mapMutations([
+            'setUin',
+            'setToken'
+        ])
     }
 };
 
+function attach(modules = {}) {
+    modules[Name] = store;
+}
+
 export {
+    attach,
     store,
     mixin 
 };
+
 

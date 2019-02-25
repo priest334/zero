@@ -4,7 +4,10 @@
   </div>
 </template>
 <script>
+  import {mixin as account} from '@/utils/account';
+
   export default {
+    mixins: [account],
     data: () => {
         return {
           name: 'first'
@@ -17,6 +20,7 @@
     },
     mounted: function() {
       console.log('first loaded');
+      console.log({uin: this.uin, token: this.token});
     }
   }
 </script>

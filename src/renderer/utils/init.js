@@ -1,18 +1,26 @@
+'use strict'
 /**
  * init.js
  */
 
 import Vue from 'vue'
 import Vuex from 'vuex'
-import {store as account} from './account'
 
-global.Vue = Vue;
+window.Vue = Vue;
 Vue.use(Vuex);
 
-const store = new Vuex.Store({
-    modules: {
-        account
+const storeHelper = {
+    modules: {},
+    push: function(src = '') {
+        const {attach} = require(`${src}`);
+        attach(this.modules);
     }
+};
+
+storeHelper.push('./account');
+
+const store = new Vuex.Store({
+    modules: storeHelper.modules
 });
 
 export {
