@@ -98,7 +98,8 @@ module.exports = (env) => {
             new webpack.DefinePlugin({
                 '__static': `${path.join(__dirname, '../static').replace(/\\/g, '\\\\')}`
             }),
-            new webpack.HotModuleReplacementPlugin()
+            new webpack.HotModuleReplacementPlugin(),
+            new webpack.NoEmitOnErrorsPlugin()
         );
     } else {
         rendererConfig.plugins.push(

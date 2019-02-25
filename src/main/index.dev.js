@@ -2,7 +2,7 @@
  * dev-runner.js
  */
 
-require('electron-debug')({ showDevTools: false })
+//require('electron-debug')({ showDevTools: false })
 
 // Install `vue-devtools`
 require('electron').app.on('ready', () => {

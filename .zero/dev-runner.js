@@ -9,14 +9,14 @@ const { say } = require('cfonts')
 const { spawn } = require('child_process')
 const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
-const webpackHotMiddleware = require('webpack-hot-middleware')
+const WebpackHotMiddleware = require('webpack-hot-middleware')
 
 const mainConfig = require('./webpack.main.config')(process.env.NODE_ENV)
 const rendererConfig = require('./webpack.renderer.config')(process.env.NODE_ENV)
 
-let electronProcess = null
-let manualRestart = false
-let hotMiddleware
+let electronProcess = null;
+let manualRestart = false;
+let hotMiddleware = null;
 
 function logStats (proc, data) {
     let log = ''
@@ -40,12 +40,16 @@ function logStats (proc, data) {
     console.log(log)
 }
 
+for (let name in rendererConfig.entry) {
+    rendererConfig.entry[name] = [path.join(__dirname, './dev-client.js')].concat(rendererConfig.entry[name]);
+}
+
 function startRenderer () {
     return new Promise((resolve, reject) => {
-        rendererConfig.entry = Object.assign({'dev-client': path.join(__dirname, './dev-client.js')}, rendererConfig.entry);
+        //rendererConfig.entry = Object.assign({'dev-client': path.join(__dirname, './dev-client.js')}, rendererConfig.entry);
         rendererConfig.mode = 'development';
         const compiler = webpack(rendererConfig);
-        hotMiddleware = webpackHotMiddleware(compiler, {
+        hotMiddleware = WebpackHotMiddleware(compiler, {
             log: false,
             heartbeat: 2500
         });
@@ -67,10 +71,10 @@ function startRenderer () {
                 contentBase: path.join(__dirname, '../build/pages'),
                 quiet: true,
                 before (app, ctx) {
-                    app.use(hotMiddleware)
+                    app.use(hotMiddleware);
                     ctx.middleware.waitUntilValid(() => {
                         resolve()
-                    })
+                    });
                 }
             }
         )

@@ -4,7 +4,7 @@
       <input type="button" value="first" @click="showFirst" />
       <input type="button" value="second" @click="showSecond" />
     </div>
-    <div style="height: 90%; background-color: rgb(255,0,255)">
+    <div style="height: 90%; background-color: rgb(255,0,255)">xx
       <router-view></router-view>
     </div>
   </div>
@@ -27,7 +27,7 @@
       }
     },
     mounted: function() {
-      console.log('index loaded');
+      console.log('index loaded1');
     }
   }
 </script>
