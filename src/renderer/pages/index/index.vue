@@ -4,7 +4,7 @@
       <input type="button" value="first" @click="showFirst" />
       <input type="button" value="second" @click="showSecond" />
     </div>
-    <div style="height: 90%; background-color: rgb(255,0,255)">xx
+    <div style="height: 90%; background-color: rgb(255,0,255)">
       <router-view></router-view>
     </div>
   </div>
@@ -31,3 +31,4 @@
     }
   }
 </script>
+

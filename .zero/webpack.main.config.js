@@ -5,14 +5,13 @@ process.env.BABEL_ENV = 'main';
 const path = require('path');
 const webpack = require('webpack');
 const BabelMinifyWebpackPlugin = require('babel-minify-webpack-plugin');
-const { dependencies } = require('../package.json');
+
 
 const mainConfig = {
   entry: {
     main: path.resolve(__dirname, '../src/main/index.js')
   },
   externals: [
-    ...Object.keys(dependencies || {})
   ],
   module: {
     rules: [
@@ -29,7 +28,8 @@ const mainConfig = {
   ],
   output: {
     filename: '[name].js',
-    path: path.join(__dirname, '../build')
+    path: path.join(__dirname, '../build'),
+    publicPath: './'
   },
   target: 'electron-main'
 }

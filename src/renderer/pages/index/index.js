@@ -2,7 +2,7 @@
  * index.js
  */
 
-import { store } from '../../utils/init';
+import { store } from '@/utils/init';
 import { router } from './router';
 
 let vm = new Vue({
@@ -11,4 +11,5 @@ let vm = new Vue({
 });
 
 vm.$mount('#app');
+
 

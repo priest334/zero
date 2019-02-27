@@ -1,24 +1,13 @@
 <template>
   <div>
-    <input type="button" @click="setValue" value="setValue" />
-    <input type="button" @click="toIndex" :value="name" />
+    about
   </div>
 </template>
 <script>
   export default {
-    name: 'about',
-    data: () => {
-        return {
-            name: 'about'
-        };
+    data: function() {
     },
     methods: {
-      setValue: function() {
-      },
-      toIndex: function() {
-        //this.$router.push({name: 'index'});
-        //window.location.href = 'index.html';
-      }
     },
     mounted: function() {
       console.log(this);

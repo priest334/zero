@@ -24,7 +24,7 @@ function filterEntries(root, filter) {
     return entries;
 }
 
-const PAGESDIR = path.resolve(__dirname, '../src/renderer/pages/');
+const PAGESDIR = path.resolve(__dirname, '../src/renderer');
 let htmlTemplates = filterEntries(PAGESDIR, '**/*.ejs');
 let rendererEntries = (entries => {
     let all = {}
@@ -58,13 +58,12 @@ const htmlPages = function(env) {
     return pages;
 };
 
-
 const rendererConfig = {
     entry: rendererEntries,
     externals: [
     ],
     output: {
-        path: path.join(__dirname, '../build/pages'),
+        path: path.join(__dirname, '../build'),
         filename: '[name].js'
     },
     module: {
@@ -87,6 +86,10 @@ const rendererConfig = {
         new VueLoaderPlugin(),
         new MiniCssExtractPlugin({filename: 'styles.css'})
     ],
+    // node: {
+    //     __dirname: process.env.NODE_ENV !== 'production',
+    //     __filename: process.env.NODE_ENV !== 'production'
+    // },
     target: 'electron-renderer'
 }
 
@@ -103,10 +106,10 @@ module.exports = (env) => {
         );
     } else {
         rendererConfig.plugins.push(
-            new BabelMinifyWebpackPlugin(),
             new webpack.DefinePlugin({
                 'process.env.NODE_ENV': '"production"'
             }),
+            new BabelMinifyWebpackPlugin(),
             new CopyWebpackPlugin([
                 {
                     from: path.join(__dirname, '../static'),

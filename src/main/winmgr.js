@@ -1,3 +1,5 @@
+'use strict'
+
 import { BrowserWindow } from 'electron'
 
 class WinMgr {
@@ -5,8 +7,8 @@ class WinMgr {
         this.windows_ = {}
     }
 
-    newWindow({name,url} = {}, options={}) {
-        let win = new BrowserWindow(options); // Object.assign({webPreferences: {nodeIntegration: false}}, options)
+    newWindow({name,url} = {}, options={}) {      
+        let win = new BrowserWindow(Object.assign({webPreferences: {webSecurity: false}}, options)); // Object.assign({webPreferences: {nodeIntegration: false}}, options)
         if (!name) {
             name = 'zero-win-'+(this.windows_.length+1);
         }
@@ -15,7 +17,7 @@ class WinMgr {
             this.windows_[name] = null;
         })
         this.windows_[name] = win;
-        if (process.env.NODE_ENV == 'development') {
+        if (process.env.NODE_ENV !== 'development') {
             win.webContents.openDevTools({mode: 'detach'});
         }
         win.loadURL(url);

@@ -34,15 +34,14 @@ function pack(config) {
       else if (stats.hasErrors()) {
         let err = ''
 
-        stats.toString({
-          chunks: false,
-          colors: true
-        })
+        stats.toString('verbose')
         .split(/\r?\n/)
         .forEach(line => {
           err += `    ${line}\n`
         })
-
+        console.log('+++++++++++++++++++++++++++ error ++++++++++++++++++++++++++++++');
+        console.log(err);
+        console.log('+++++++++++++++++++++++++++ error ++++++++++++++++++++++++++++++');
         reject(err)
       } else {
         resolve(stats.toString({
@@ -87,11 +86,16 @@ function build() {
   pack(rendererConfig).then(result => {
     results += result + '\n\n'
     m.success('renderer')
+  },
+  reason => {
+    console.log('+++++++++++++++++++++++++++ reject ++++++++++++++++++++++++++++++');
+    //console.log(reason);
+    console.log('+++++++++++++++++++++++++++ reject ++++++++++++++++++++++++++++++');
   }).catch(err => {
     m.error('renderer')
     console.log(`\n  failed to build renderer process`)
     console.error(`\n${err}\n`)
-    process.exit(1)
+    process.exit(2)
   })
 }
 

@@ -1,4 +1,4 @@
-'use strict'
+
 /**
  * init.js
  */
@@ -20,6 +20,7 @@ const storeHelper = {
 storeHelper.push('./account');
 
 const store = new Vuex.Store({
+    strict: process.env.NODE_ENV !== 'production',
     modules: storeHelper.modules
 });
 

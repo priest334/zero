@@ -1,20 +1,20 @@
-import { app } from 'electron'
-import { winmgr } from './winmgr'
+'use strict'
 
-let isDev = (process.env.NODE_ENV === 'development');
+import { app } from 'electron';
+import { winmgr } from './winmgr';
+
+const assetsPath = (process.env.NODE_ENV === 'development')
+? 'http://localhost:9080'
+: `file://${app.getAppPath()}/build`;
 
 const DEFINED_WINDOWS = {
     'index': {
         name: 'index',
-        url: isDev
-        ? 'http://localhost:9080/index.html'
-        : `file://${__dirname}/pages/index.html`
+        url: `${assetsPath}/pages/index.html`
     },
     'about': {
         name: 'about',
-        url: isDev
-        ? 'http://localhost:9080/about.html'
-        : `file://${__dirname}/pages/about.html`
+        url: `${assetsPath}/pages/about.html`
     }
 };
 
