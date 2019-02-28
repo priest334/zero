@@ -17,7 +17,7 @@ class WinMgr {
             this.windows_[name] = null;
         })
         this.windows_[name] = win;
-        if (process.env.NODE_ENV !== 'development') {
+        if (process.env.NODE_ENV === 'development') {
             win.webContents.openDevTools({mode: 'detach'});
         }
         win.loadURL(url);
